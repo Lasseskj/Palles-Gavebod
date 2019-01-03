@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Entities.Models.Gifts>
+@{
+    ViewData["Title"] = "GirlGifts";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GiftNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationTime)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (Entities.Models.Gifts gifts in Model)
+             {
+                @if (gifts.GirlGift == true)
+                 {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => gifts.GiftNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => gifts.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => gifts.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => gifts.CreationTime)
+                            </td>
+                       
+                        </tr>
+                 }
+                   
+             }
+         }
+    </tbody>
+</table>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Entities.Models.Gifts>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GiftNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BoyGift)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GirlGift)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @if ( Model != null )
+         {
+            @foreach (Entities.Models.Gifts gifts in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => gifts.GiftNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gifts.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gifts.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gifts.CreationTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gifts.BoyGift)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gifts.GirlGift)
+                    </td>
+                    @*<td>                        |
+                        <a asp-action="Delete" asp-route-id="@item.ItemNumber">Delete</a>
+                    </td>*@
+                </tr>
+            }
+        }
+    </tbody>
+</table>
