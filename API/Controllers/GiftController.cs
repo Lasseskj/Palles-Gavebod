@@ -8,6 +8,8 @@ using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Web.Http;
+using System.Web;
 
 namespace API.Controllers
 {
@@ -64,16 +66,20 @@ namespace API.Controllers
 
        
         [HttpPost]
-        public async Task<IActionResult> Post(Entities.Models.Gifts gifts, string title, string description, bool boyGift, bool girlGift)
+        public async Task<IActionResult> PostNewGift(Entities.Models.Gifts gift)
         {
-            var postedgift = gifts;
-            postedgift.Title = title;
-            postedgift.Description = description;
-            postedgift.BoyGift = boyGift;
-            postedgift.GirlGift = girlGift;
-            postedgift.CreationTime = DateTime.UtcNow;
-            _context.Add(postedgift);
-            await _context.SaveChangesAsync();
+            var newGift = new Entities.Models.Gifts()
+            {
+                Title = gift.Title,
+                Description = gift.Description,
+                CreationTime = DateTime.UtcNow,
+                BoyGift = gift.BoyGift,
+                GirlGift = gift.GirlGift
+            };
+
+
+            await _context.AddAsync(newGift);
+            _context.SaveChanges();
             return Ok();
 
         }
